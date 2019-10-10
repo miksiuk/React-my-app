@@ -4,7 +4,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="card-footer text-center">
         Footer
       </div>
     );
