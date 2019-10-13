@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Footer extends Component {
 
   render() {
     return (
       <div className="card-footer text-center">
-        Footer
+        clicks = {this.props.clicks}
       </div>
     );
   }
 }
 
-export default Footer;
+const mapStateToProps = state => ({
+  clicks: state.clicks
+})
+
+export default connect(mapStateToProps)(Footer);

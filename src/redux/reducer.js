@@ -1,5 +1,7 @@
 const initialState = {
-    page: 'login'
+    page: 'login',
+    clicks: 0,
+    mode: 'loggedout'
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,10 +12,24 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 page: action.payload
             };
+
+        case 'CLICK':
+            return {
+                ...state,
+                clicks: state.clicks + 1
+            };
+
+        case 'MODE':
+            return {
+                ...state,
+                mode: action.payload
+            }
+
         default:
             return state;
 
     }
+
 };
 
 export default reducer;
