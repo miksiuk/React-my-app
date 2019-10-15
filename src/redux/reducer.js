@@ -1,7 +1,7 @@
 const initialState = {
     page: 'login',
     clicks: 0,
-    mode: 'loggedout'
+    mode: false
 };
 
 const reducer = (state = initialState, action) => {

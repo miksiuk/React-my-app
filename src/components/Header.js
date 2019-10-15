@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store';
+import { Link } from 'react-router-dom'
 // import Loggedout from './Header/Loggedout';
 // import Loggedin from './Header/Loggedin';
 
 class Header extends Component {
 
-  changePage(page, mode) {
-    store.dispatch({
-      type: 'PAGE',
-      payload: page,
-    });
+  changeMode(mode) {
     if (mode !== undefined) store.dispatch({
       type: 'MODE',
       payload: mode,
@@ -26,19 +23,19 @@ class Header extends Component {
   render() {
     return (
       <div>
-        {this.props.mode === 'loggedin' ?
+        {this.props.mode ?
           <div className='card-header text-center'>
-            <button className="mr-1 btn-primary" onClick={() => this.changePage('loggedout', 'loggedout')}>Logout</button>
-            <button className="mr-1" onClick={() => this.changePage('users')}>Users</button>
+            <Link to='/'><button className="mr-1 btn-primary" onClick={() => this.changeMode(false)}>Logout</button></Link>
+            <Link to='/users'><button className="mr-1">Users</button></Link>
             <button className="mr-1" onClick={() => this.click()}>Increment</button>
-            <button onClick={() => this.changePage('about')}>About Us</button>
+            <Link to='/about'><button>About Us</button></Link>
           </div> :
           <div className='card-header text-center'>
-            <button className="mr-1 btn-primary" onClick={() => this.changePage('loggedin', 'loggedin')}>Login</button>
-            <button className="mr-1" onClick={() => this.changePage('registration')}>Register</button>
-            <button className="mr-1" onClick={() => this.changePage('users')}>Users</button>
+            <Link to='/'><button className="mr-1 btn-primary">Login</button></Link>
+            <Link to='/registration'><button className="mr-1">Register</button></Link>
+            <Link to='/users'><button className="mr-1">Users</button></Link>
             <button className="mr-1" onClick={() => this.click()}>Increment</button>
-            <button onClick={() => this.changePage('about')}>About Us</button>
+            <Link to='/about'><button>About Us</button></Link>
           </div>
         }
       </div >
