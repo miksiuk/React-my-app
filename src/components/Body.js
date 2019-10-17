@@ -4,7 +4,6 @@ import Loggedout from './Body/Loggedout';
 import Registration from './Body/Registration';
 import AboutUs from './Body/AboutUs';
 import { connect } from 'react-redux';
-import store from '../redux/store';
 import Users from './Body/Users';
 import { Route, Switch } from 'react-router-dom'
 import Error404 from './Body/Error404'

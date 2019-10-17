@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { axios } from 'axios';
 
 class Loggedin extends Component {
 
   render() {
     return (
-      <div>
-        User is loggined!
+      this.props.mode === false ? <Redirect to='/' /> :
+        <div>
+          User is loggined!
       </div>
     );
   }
 }
 
-export default Loggedin;
+const mapStateToProps = state => ({
+  mode: state.mode
+})
+
+export default connect(mapStateToProps)(Loggedin);
