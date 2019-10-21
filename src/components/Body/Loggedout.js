@@ -15,18 +15,22 @@ class Loggedout extends Component {
     };
   }
 
-  changeMode(mode) {
-    if (this.state.login === "miks" && this.state.password === "twiks") {
-      store.dispatch({
-        type: 'MODE',
-        payload: mode,
-      })
-    } else {
-      this.setState({
-        error: true,
-        errorText: "Credentials don't match"
-      })
-    }
+  login() {
+    this.props.users.forEach(el => {
+      if (el.login === this.state.login && this.state.login !== '') {
+        if (el.password === this.state.password && this.state.password !== '') {
+          store.dispatch({
+            type: 'MODE',
+            payload: true
+          })
+        }
+      }
+    });
+
+    this.setState({
+      error: true,
+      errorText: "Wrong user or password"
+    });
   }
 
   render() {
@@ -37,9 +41,7 @@ class Loggedout extends Component {
         <div className="text-center">
             <input placeholder="username" className="form-control m-2" onChange={(e) => this.setState({ login: e.target.value })}></input>
             <input placeholder="password" type="password" className="form-control m-2" onChange={(e) => this.setState({ password: e.target.value })}></input>
-            <button className="mr-1 btn-primary m-2" onClick={() => this.changeMode(true)}>Login</button>
-            {this.state.login}
-            {this.state.password}
+            <button className="mr-1 btn-primary m-2" onClick={() => this.login()}>Login</button>
             {this.state.error === true && <p>{this.state.errorText}</p>}
           </div>
         </div>
@@ -48,7 +50,8 @@ class Loggedout extends Component {
 }
 
 const mapStateToProps = state => ({
-  mode: state.mode
+  mode: state.mode,
+  users: state.users
 })
 
 export default connect(mapStateToProps)(Loggedout);

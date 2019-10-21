@@ -6,7 +6,7 @@ class Users extends Component {
         return (
             <div>
                 Users
-      </div>
+            </div>
         );
     }
 }
